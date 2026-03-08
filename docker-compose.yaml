@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  server:
+    image: golang:1.20
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/data
+    ports:
+      - "8080:8080"
+    command: go run ./src
+    networks:
+      - desafio-client-server-api-network
+    depends_on:
+      - sqlite
+
+  sqlite:
+    image: nouchka/sqlite3
+    volumes:
+      - ./data:/data
+    tty: true
+    networks:
+      - desafio-client-server-api-network
+
+networks:
+  desafio-client-server-api-network:
+    driver: bridge
