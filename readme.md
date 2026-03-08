@@ -3,6 +3,7 @@
 Componentes do Sistema Você precisará entregar dois arquivos principais:
 
 client.go
+
 server.go
 
 ## Descrição Server
@@ -11,10 +12,12 @@ Requisitos Técnicos: Server.go O servidor HTTP deve operar na porta 8080 e expo
 
 Consumo de API Externa: 
 - Ao receber uma requisição em /cotacao, o server deve consumir a API de Câmbio: https://economia.awesomeapi.com.br/json/last/USD-BRL.
+
 Timeout: 
 - O timeout máximo para chamar essa API externa deve ser de 200ms (usando o pacote context).
 
 Persistência (Banco de Dados): O servidor deve registrar cada cotação recebida em um banco de dados SQLite.
+
 Timeout: 
 - O timeout máximo para persistir os dados no banco deve ser de 10ms (usando o pacote context).
 Resposta: 
