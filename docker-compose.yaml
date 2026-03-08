@@ -1,18 +1,4 @@
-version: "3.8"
 services:
-  server:
-    image: golang:1.20
-    working_dir: /app
-    volumes:
-      - .:/app
-      - ./data:/data
-    ports:
-      - "8080:8080"
-    command: go run ./src
-    networks:
-      - desafio-client-server-api-network
-    depends_on:
-      - sqlite
 
   sqlite:
     image: nouchka/sqlite3
@@ -21,6 +7,34 @@ services:
     tty: true
     networks:
       - desafio-client-server-api-network
+
+  server:
+    image: golang:1.20
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/data
+    ports:
+      - "8080:8080"
+    command: go run ./src/server/server.go
+    networks:
+      - desafio-client-server-api-network
+    depends_on:
+      - sqlite
+
+  client:
+    image: golang:1.20
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./data:/data
+    command: sh -c "sleep 5 && go run ./src/client/client.go"
+    networks:
+      - desafio-client-server-api-network
+    depends_on:
+      - server
+    environment:
+      - URL=http://server:8080/cotacao
 
 networks:
   desafio-client-server-api-network:
