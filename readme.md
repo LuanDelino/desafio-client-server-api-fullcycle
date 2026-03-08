@@ -37,6 +37,9 @@ Processamento e Arquivo:
 - Deve salvar a cotação em um arquivo chamado cotacao.txt.
 - Formato do arquivo: Dólar: {valor}
 
+Logs:
+- Caso o timeout de 300ms seja excedido, o erro deve ser logado no console do cliente.
+
 ## Execução
 ### Via Compose
 O projeto tem um compose onde ele irá preparar um sqlite, executar o servidor do server.go e ao final, executar o script do client.go
@@ -46,5 +49,4 @@ Você tambem pode rodar o projeto server.go primeiro e depois de iniciar o mesmo
 - server.go: Deve criar a pasta data/cotacao.db
 - client.go: Deve criar na raiz do projeto o cotacao.txt
 
-Logs:
-- Caso o timeout de 300ms seja excedido, o erro deve ser logado no console do cliente.
+
